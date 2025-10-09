@@ -88,9 +88,9 @@ Vektörlerin depolanması ve hızlı aranması için:
 
 ## 👩‍💻 Geliştirici
 **Ceren Özyön**  
-🎓 Biomedical Engineering Student  
-📍 Ege University  
-📫 [GitHub Profilin veya LinkedIn bağlantını buraya ekleyebilirsin]
+🎓 Biyomedikal Mühendisliği
+📍 İzmir Katip Çelebi Üniversitesi
+📫 ceren.czn78@gmail.com
 
 ---
 
