@@ -1,108 +1,67 @@
+🧠 DocuMed AI Bot
+🔍 Proje Amacı
+DocuMed AI Bot, Retrieval-Augmented Generation (RAG) mimarisi kullanılarak geliştirilmiş bir sağlık teknolojisi sohbet botudur. Amaç, hastabaşı monitörlerin kullanım kılavuzlarından bilgi çekerek, sağlık personeli veya teknisyenlerin cihazlarla ilgili sorularına hızlı, doğru ve güvenilir yanıtlar verebilen bir yapay zekâ destekli asistan oluşturmaktır.
+Bu sistem, tıbbi cihaz dokümantasyonuna erişimi kolaylaştırarak zaman tasarrufu, hataların azaltılması ve eğitim süreçlerinin desteklenmesi hedeflerini taşır.
 
-# 🧠 DocuMed AI Bot
+🗂️ Veri Seti Hakkında Bilgi
+Projede, Türkiye’deki hastanelerde yaygın olarak kullanılan GE, Philips, Mindray gibi markalara ait hastabaşı monitörlerin halka açık kullanım kılavuzları kullanılmıştır.
+Bu dokümanlarda yer alan bilgiler:
+* Cihaz kurulumu ve bağlantı talimatları
+* Temel fonksiyonlar ve ekran menüleri
+* Hasta bağlantı prosedürleri
+* Bakım, kalibrasyon ve hata giderme adımları
+* Uyarı ve alarm mesajları
+Veri ön işleme aşamasında PDF dosyalar metne dönüştürülmüş, bölümler halinde ayrıştırılmış ve embedding modeline uygun şekilde vektörleştirilmiştir.
 
-**DocuMed AI Bot**, RAG (Retrieval-Augmented Generation) mimarisi kullanılarak geliştirilmiş, **tıbbi cihaz kullanım kılavuzlarına odaklanan bir yapay zeka sohbet botudur**.  
-Bu bot, kullanıcıların tıbbi cihazlarla ilgili sorduğu sorulara **ilgili dokümanlardan alıntılar yaparak** yanıt verir ve tıbbi bilgilere erişimi kolaylaştırmayı hedefler.
+⚙️ Kullanılan Yöntemler
+🧩 1. RAG (Retrieval-Augmented Generation) Mimarisi
+Projede, RAG pipeline yaklaşımı ile bilgi çekme (retrieval) ve cevap üretimi (generation) süreçleri entegre edilmiştir.
+Kullanılan temel bileşenler:
+Bileşen	Kullanılan Teknoloji / Alternatif
+Framework	LangChain veya Haystack
+LLM (Generation Model)	OpenAI API, Gemini API veya Hugging Face LLM’leri
+Embedding Model	Google, Cohere veya SentenceTransformers tabanlı model
+Vektör Veritabanı	Chroma, FAISS veya Pinecone
+Frontend	Streamlit / Gradio tabanlı web arayüzü
+💻 Kodun Çalışma Kılavuzu
+1️⃣ Ortam Kurulumu
+git clone https://github.com/kullaniciadi/DocuMed-AI-Bot.git
+cd DocuMed-AI-Bot
+2️⃣ Sanal Ortam Oluşturma
+python -m venv venv
+source venv/bin/activate  # Windows için: venv\Scripts\activate
+3️⃣ Gerekli Kütüphanelerin Kurulumu
+pip install -r requirements.txt
+4️⃣ Uygulamayı Çalıştırma
+streamlit run app.py
+veya
+python app.py
+Tarayıcıda http://localhost:8501 adresine giderek web arayüzünü görüntüleyebilirsiniz.
 
----
+🧠 Çözüm Mimarisi
+DocuMed AI Bot, 3 katmandan oluşur:
+1. Veri Katmanı – Kullanım kılavuzlarının metin temsilleri embedding olarak saklanır.
+2. Bilgi Getirme Katmanı – Kullanıcının sorgusuna en yakın doküman parçalarını FAISS/Chroma üzerinden getirir.
+3. Cevap Üretme Katmanı – Getirilen bilgiler LLM’e verilerek doğal dilde yanıt oluşturulur.
+Bu yapı, büyük dil modellerinin genel bilgiye dayalı “halüsinasyon” eğilimini azaltır ve doğrudan kılavuz içeriğine dayalı yanıtlar sağlar.
 
-## 🚀 Proje Adımları
+🌐 Web Arayüzü & Ürün Kılavuzu
+Botun web arayüzü, kullanıcı dostu bir tasarımla sunulmuştur. Kullanıcı, metin kutusuna “Cihaz nasıl kalibre edilir?” gibi bir soru girdiğinde sistem:
+1. Sorguya uygun metin parçalarını veri tabanından getirir.
+2. LLM ile doğal bir yanıt oluşturur.
+3. Cevabı ve kaynak doküman bölümünü birlikte görüntüler.
+🔗 Canlı Demo Linki: https://documed-ai.streamlit.app (proje deploy edildiğinde güncellenecek)
 
-### 1. Geliştirme Ortamı (GitHub & README.md)
-Projenin tüm kodları bu GitHub reposunda bulunmaktadır.  
-README.md dosyası, projenin genel yapısını, amacını ve nasıl çalıştırılacağını açıklamaktadır.
+📊 Elde Edilen Sonuçlar
+Proje şu anda geliştirme aşamasındadır. Tamamlandığında burada, botun doğruluk oranı, kullanıcı deneyimi geri bildirimleri ve örnek etkileşim ekranları paylaşılacaktır.
 
-### 2. Veri Seti Hazırlama
-Botun bilgi tabanı, çeşitli **tıbbi cihazların halka açık kullanım ve servis kılavuzlarından** oluşturulmuştur.  
-Bu dokümanlar, RAG pipeline’ı için temel bilgi kaynağı olarak kullanılır.  
-Örnek cihazlar:
-- EKG cihazı  
-- Kan basıncı monitörü  
-- Oksijen konsantratörü  
-- Hasta monitörü  
+🧾 Kaynaklar
+* Gemini API Docs
+* Haystack Documentation
+* Hugging Face Datasets
+* Chatbot Deploy Template
 
-### 3. Kodun Çalışma Kılavuzu
-Projeyi yerelde veya sunucuda çalıştırmak için gereken adımlar aşağıda detaylandırılacaktır.  
-🔹 *To be updated...*
-
-### 4. Çözüm Mimarisi
-Projede kullanılan RAG mimarisi aşağıdaki ana bileşenlerden oluşur:
-- **Retriever:** Bilgi tabanından en alakalı doküman parçalarını getirir.  
-- **Generator:** Model, bu bilgileri kullanarak kullanıcı sorusuna yanıt üretir.  
-- **Pipeline:** Kullanıcı sorgusu → Embedding → Retrieval → Generation adımlarını zincirler.
-
-### 5. Web Arayüzü & Ürün Kılavuzu
-Botun web arayüzü kullanıcı dostu bir sohbet ekranı sunar.  
-Kullanıcılar tıbbi cihazlarla ilgili sorularını buradan iletebilir.  
-🔹 *Demo linki eklenecektir.*
-
----
-
-## 📂 Veri Seti Hakkında Bilgi
-
-Projede, tıbbi cihaz üreticilerinin web sitelerinden elde edilen halka açık kullanım kılavuzları kullanılmıştır.  
-Bu kılavuzlar aşağıdaki bilgileri içerir:
-- Teknik özellikler  
-- Kullanım talimatları  
-- Sorun giderme adımları  
-- Güvenlik uyarıları  
-
-> Veri setinin amacı, botun tıbbi cihazlarla ilgili spesifik sorulara **doğru, açıklayıcı ve güvenilir yanıtlar** vermesini sağlamaktır.
-
----
-
-## 🧩 Kullanılan Yöntemler ve Teknolojiler
-
-### 🔹 RAG Pipeline Framework
-Projede **LangChain** veya **Haystack** framework’ü kullanılacaktır.
-
-### 🔹 Generation Model
-Yanıt üretimi için:
-- [ ] Gemini API  
-- [ ] OpenAI API (ör. GPT-4/5)  
-- [ ] Hugging Face modellerinden biri  
-
-### 🔹 Embedding Model
-Metinleri vektörlere dönüştürmek için:
-- [ ] Google Embeddings  
-- [ ] Cohere  
-- [ ] Sentence Transformers  
-
-### 🔹 Vektör Veritabanı
-Vektörlerin depolanması ve hızlı aranması için:
-- [ ] Chroma  
-- [ ] FAISS  
-- [ ] Pinecone  
-
----
-
-## 📊 Elde Edilen Sonuçlar
-🔹 *Bu bölüm proje tamamlandığında doldurulacaktır.*
-
----
-
-## 🌐 Web Linki
-🔹 *Projenin canlı sürümü yayınlandığında bağlantı buraya eklenecektir.*
-
----
-
-## 👩‍💻 Geliştirici
-**Ceren Özyön**  
-🎓 Biyomedikal Mühendisliği
-
-📍 İzmir Katip Çelebi Üniversitesi
-
-📫 ceren.czn78@gmail.com
-
-
----
-
-## 📜 Lisans
-🔹 *Lisans türü belirlendiğinde buraya eklenecektir.*  
-*(Örneğin: MIT License)*
-
----
-
-## 💬 Notlar
-- Proje, yalnızca **eğitim ve araştırma amaçlıdır**.  
-- Üretilen yanıtlar **profesyonel tıbbi tavsiye yerine geçmez**.
+👩‍💻 Katkıda Bulunanlar
+* Proje Geliştiricisi: [Adınız]
+* Bootcamp: Akbank GenAI Bootcamp – Yeni Nesil Proje Kampı
+* Tarih: Ekim 2025
